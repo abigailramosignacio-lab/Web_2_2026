@@ -1,0 +1,16 @@
+/* Ejemplo para la sección de productos */
+.producto__card {
+    display: flex;
+    flex-wrap: wrap; /* Para que bajen si no hay espacio */
+    justify-content: center;
+    gap: 2rem; /* El espacio entre tarjetas */
+    padding: 2rem;
+}
+
+.card {
+    flex: 1 1 300px; /* Se adaptan al tamaño de pantalla */
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra suave */
+}

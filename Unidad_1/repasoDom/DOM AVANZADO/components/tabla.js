@@ -10,7 +10,7 @@ const tabla = (()=>{
                //agregar acciones
                const accionCell = nuevaFila.insertCell(4);
                const acciones = document.createElement('div');
-               acciones.className='actions';
+               acciones.className='actions';A
 
                //crear Botones
                //HECHO

@@ -14,6 +14,9 @@ import tabla from "./tabla.js"
             <p><strong>Descripcion:</strong>${task.description}</p>
             <p><strong>Fecha:</strong>${task.date}</p>
             <p><strong>Prioridad:</strong>${task.priority}</p>
+            <p><strong>Materia:</strong>${task.matery}</p>
+            <p><strong>Docente:</strong>${task.docent}</p>
+            <p><strong>Fecha Limite:</strong>${task.dateLim}</p>
             <p><strong>Estado:</strong>${task.completed?'Completada': 'Pendiente'}</p>
             `;
             taskCards.appendChild(card)

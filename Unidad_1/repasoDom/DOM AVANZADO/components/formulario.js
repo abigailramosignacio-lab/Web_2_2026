@@ -4,13 +4,17 @@ const Form = (()=>{
       const inputDescription = document.querySelector('[data-input-descripcion]');//inport descripcion
       const inputFecha = document.querySelector('[data-input-fecha]');//importacion fecha
       const inputPrioridad = document.querySelector('[data-input-prioridad]');//inport prioridad
+      const inputMatery = document.querySelector('[data-input-materia]');
+      const inputDocente = document.querySelector('[data-input-docente]');
+      const inputFechaLimite = document.querySelector('[data-input-fechalimite]');
 
       const datosForm = () =>{
         return{
                 task: inputTask.value.trim(),
                 description: inputDescription.value.trim(),
                 date: inputFecha.value.trim(),
-                priority: inputPrioridad.value.trim()
+                priority: inputPrioridad.value.trim(),
+                matery: inputMatery.value.trim(),
         };
       };
       const reset =()=>{
@@ -29,4 +33,3 @@ const Form = (()=>{
       return{setDatos,}
        })();
        export default Form;
-

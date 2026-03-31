@@ -61,7 +61,7 @@
           <input
             type="text"
             name="priority"
-            placeholder="MAteria"
+            placeholder="Materia"
             class="inputForm"
             autocomplete="off"
             data-input-prioridad
@@ -77,12 +77,11 @@
             required
           />
           <input
-            type="text"
-            name="priority"
+            type="date"
+            name="date"
             placeholder="Fecha Limite"
             class="inputForm"
-            autocomplete="off"
-            data-input-prioridad
+            data-input-fecha
             required
           />
           <button type="submit" class="btnCreate">
@@ -91,9 +90,7 @@
         </form>
       </div>
 
-      <!-- Contenedor para la tabla y las cards -->
       <div class="contentContainer">
-        <!-- Tabla -->
         <div class="tableContainer">
           <h2>Lista de Tareas</h2>
           <table id="taskTable">

@@ -1,0 +1,41 @@
+{
+  "posts": [
+    {
+      "titulo": "Actualizado",
+      "descripcion": "Actualizado",
+      "fecha": "2026-03-23T13:51:53.347Z",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "titulo": "Nuevo Post Creado",
+      "descripcion": "Econtenido ",
+      "fecha": "2025-03-27"
+    },
+    {
+      "titulo": "abi",
+      "descripcion": "tr",
+      "fecha": "2026-03-23T14:08:54.688Z",
+      "id": "snZVF4jzL6Y"
+    },
+    {
+      "titulo": "nuevo post",
+      "descripcion": "es un nuevo post creado",
+      "fecha": "2026-03-23T14:07:46.028Z",
+      "id": "Ke6nq0z3Quk"
+    },
+    {
+      "titulo": "nuevo post",
+      "descripcion": "es un nuevo post creado",
+      "fecha": "2026-03-23T14:07:59.849Z",
+      "id": "he85dW1_6nE"
+    },
+    {
+      "titulo": "t3",
+      "descripcion": "tres",
+      "fecha": "2026-03-23T14:08:14.188Z",
+      "id": "keRz3rDsoCk"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

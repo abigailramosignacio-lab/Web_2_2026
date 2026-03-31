@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USO DE TYPE</title>
+</head>
+<body>
+    <p>uno</p>
+    <p>dos</p>
+    <p>tres</p>
+    <p>cuatro</p>
+    
+    <script>
+        const elemento= document.querySelectorAll('p');
+        elemento.forEach((elemento)=>{
+            console.log(elemento.textContent);
+            elemento.style.color='red';
+            elemento.style.fontSize='20px';
+            elemento.style.fontFamily='cursive';
+        });
+    </script>
+</body>
+</html>

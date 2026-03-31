@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SISTEMA DE REGISTRO CRÍTICO v22.0 - GOLD EDIT</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="controles" class="panel">
+    <h2>REGISTRO DE DATOS</h2>
+
+    <div class="modulo">
+        <span class="label">1. NOMBRE </span>
+        <div id="timer-letra"></div>
+        <div id="alfabeto"></div>
+        <button id="btn-conf" style="width:100%; margin-top:8px; padding:10px; background:#200; color:#fff; border:1px solid #f00; cursor:pointer;">CONFIRMAR CARÁCTER</button>
+        <div id="out-n" style="margin-top:5px; color:#fff; font-size:18px; height:24px; border-bottom:2px solid #C5A059;">_</div>
+    </div>
+
+    <div class="modulo">
+        <span class="label">2. CURSO </span>
+        <div id="slot-visor">ESPERANDO...</div>
+        <button id="btn-fijar-curso" onclick="stopSlot()">FIJAR CURSO</button>
+        <p style="text-align:center; font-size:9px;">VALOR: <span id="out-c" style="color:white">---</span></p>
+    </div>
+
+    <div style="display:flex; gap:10px;">
+        <div class="modulo" style="flex:1">
+            <span class="label">3. Edad </span>
+            <input type="range" min="0" max="100" value="0" class="slider-pro" id="sld-edad" oninput="updateVal('edad')">
+            <div id="v-edad" style="font-size:24px; text-align:center;">0</div>
+        </div>
+        <div class="modulo" style="flex:1">
+            <span class="label">4. Hermanos </span>
+            <input type="range" min="0" max="20" value="0" class="slider-pro" id="sld-hnos" oninput="updateVal('hnos')">
+            <div id="v-hnos" style="font-size:24px; text-align:center;">0</div>
+        </div>
+    </div>
+
+    <div class="modulo">
+        <span class="label">5. Ciudad</span>
+        <div id="radar" style="height:50px; background:#000; position:relative; overflow:hidden;"></div>
+        <p id="out-ciu" style="text-align:center; font-size:10px;">ESPERANDO...</p>
+    </div>
+
+    <button id="btn-sellar">SELLAR Y REINICIAR NÚCLEO</button>
+</div>
+
+<div id="registros" class="panel">
+    <h2>TABLA DE REGISTROS</h2>
+    <table id="tabla">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Curso</th>
+                <th>Edad</th>
+                <th>Hermanos</th>
+                <th>Ciudad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

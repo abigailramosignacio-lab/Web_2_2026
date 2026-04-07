@@ -1,0 +1,27 @@
+{
+  "tasks": [
+    {
+      "task": "rocio",
+      "description": "recinto",
+      "date": "2026-04-10",
+      "priority": "rescate",
+      "matery": "qacr",
+      "docent": "ac3r",
+      "dateLim": "2026-04-17",
+      "completed": true,
+      "id": "euDUxvhlDdo"
+    },
+    {
+      "task": "BORNI",
+      "description": "TRABAJO",
+      "date": "2026-03-12",
+      "priority": "EKMD",
+      "matery": "MATEMATICAS",
+      "docent": "FREDDY",
+      "dateLim": "2026-03-10",
+      "completed": false,
+      "id": "5d20Ls70mng"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,152 +1,169 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Dosis', sans-serif;
-    font-size: 16px;
-  }
-  
-  main {
-    background-image: linear-gradient(
-      109.6deg,
-      rgba(62, 161, 219, 1) 11.2%,
-      rgba(93, 52, 236, 1) 100.2%
-    );
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-  }
-  
-  .formContainer {
-    width: 80vw;
-    border-radius: 25px;
-    background-color: #fff;
-    padding: 25px;
-    margin-bottom: 20px;
-  }
-  
-  .title {
-    font-family: 'Dosis', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    margin-bottom: 15px;
-  }
-  
-  .inputForm {
-    border: none;
-    padding: 10px;
-    border: 1px solid #eee;
-    outline: none;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  .inputForm::placeholder {
-    padding: 0px;
-  }
-  
-  .btnCreate {
-    padding: 10px 15px;
-    background-image: linear-gradient(
-      109.6deg,
-      rgba(62, 161, 219, 1) 11.2%,
-      rgba(93, 52, 236, 1) 100.2%
-    );
-    border: none;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .contentContainer {
-    width: 80vw;
-    display: flex;
-    gap: 20px; /* Espacio entre la tabla y las cards */
-  }
-  
-  .tableContainer {
-    flex: 2; /* La tabla ocupa más espacio */
-    border-radius: 25px;
-    background-color: #fff;
-    padding: 25px;
-  }
-  
-  .tableContainer h2 {
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table th, table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  table th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-  }
-  
-  .cardsContainer {
-    flex: 1; /* Las cards ocupan menos espacio */
-    height: 500px; /* Altura fija */
-    border-radius: 25px;
-    background-color: #fff;
-    padding: 25px;
-    overflow-y: auto; /* Scroll vertical */
-  }
-  
-  .cardsContainer h2 {
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  
-  #taskCards {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .taskCard {
-    padding: 15px;
-    box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.16);
-    border-radius: 8px;
-    background-color: #f8f9fa;
-  }
-  
-  .taskCard p {
-    margin: 5px 0;
-  }
-  
-  .actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .actions button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .actions button.view {
-    background-color: #28a745;
-    color: #fff;
-  }
-  
-  .actions button.delete {
-    background-color: #dc3545;
-    color: #fff;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: 'Dosis', sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+main {
+  background: linear-gradient(120deg, #3a86ff, #8338ec);
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.formContainer {
+  width: 80vw;
+  max-width: 900px;
+  border-radius: 20px;
+  background: #ffffff;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.formContainer h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.formContainer input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+.formContainer input:focus {
+  border-color: #8338ec;
+  box-shadow: 0 0 8px rgba(131, 56, 236, 0.3);
+  outline: none;
+}
+
+.btnCreate {
+  padding: 12px;
+  background: linear-gradient(135deg, #06d6a0, #118ab2);
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btnCreate:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.contentContainer {
+  width: 80vw;
+  display: flex;
+  gap: 20px;
+}
+
+/*TABLA*/
+
+.tableContainer {
+  flex: 2;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.tableContainer h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  background: #3a86ff;
+  color: white;
+  padding: 12px;
+  text-align: center;
+}
+
+table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+table tr:hover {
+  background-color: #f1f5ff;
+}
+
+tr.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cardsContainer {
+  flex: 1;
+  height: 500px;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.cardsContainer h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#taskCards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.taskCard {
+  position: relative;
+  padding: 15px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #edf2fb, #e2eafc);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.taskCard:hover {
+  transform: translateY(-4px);
+}
+
+.taskCard::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(180deg, #3a86ff, #8338ec);
+}
+
+.taskCard p {
+  margin: 5px 0;
+}
+

@@ -9,7 +9,6 @@ formulario.addEventListener("submit", (evento) => {
     const nombre = document.querySelector("[data-nombre]").value;
     const email = document.querySelector("[data-email]").value;
 
-    // Enviar los datos al servicio
     clientService.crearCliente(nombre, email)
         .then((respuesta) => {
             console.log("Todo OK", respuesta);

@@ -30,8 +30,8 @@ const crearFila = (nombre, email, id) => {
     // Botón eliminar
     const btn = fila.querySelector("button");
     btn.addEventListener("click", () => {
-        const id = btn.id;
-        clientService.eliminarCliente(id)
+        const idEliminar = btn.id;
+        clientService.eliminarCliente(idEliminar)
             .then(() => {
                 alert("El cliente fue eliminado");
                 window.location.reload();
@@ -44,20 +44,12 @@ const crearFila = (nombre, email, id) => {
     return fila;
 };
 
-const table = document.querySelector("[data-table]");
+const table = document.querySelector("[data-table ]");
 
 // Listar clientes
 clientService.listarClientes()
     .then((data) => {
-        data.forEach((cliente) => {
-            const nuevaFila = crearFila(
-                cliente.nombre,
-                cliente.email,
-                cliente.id
-            );
-            table.appendChild(nuevaFila);
-        });
-    })
-    .catch(() => {
-        alert("Error al cargar los clientes");
+        data.forEach(({ nombre, email, id }) => {
+        table.appendChild(crearFila(nombre, email, id));
     });
+}).catch(() => alert("Error al cargar datos"));

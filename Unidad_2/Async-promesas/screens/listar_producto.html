@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Doguito Petshop | Clientes</title>
+    <title>Doguito Petshop | Productos</title>
     <link rel="icon" href="../assets/img/doguitoadm.svg" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
@@ -15,7 +15,7 @@
     />
     <link rel="stylesheet" href="../assets/css/base/base.css" />
     <link rel="stylesheet" href="../assets/css/componentes/header.css" />
-    <link rel="stylesheet" href="../assets/css/lista_cliente.css" />
+    <link rel="stylesheet" href="../assets/css/lista_producto.css" />
     <link rel="stylesheet" href="../assets/css/componentes/table.css" />
     <link rel="stylesheet" href="../assets/css/componentes/button.css" />
     <link rel="stylesheet" href="../assets/css/componentes/modal.css" />
@@ -37,17 +37,17 @@
       </nav>
     </header>
 
-    <main class="clientes-container">
+    <main class="producto-container">
       <table class="table">
         <thead>
           <tr>
             <th class="table__column--p">Nombre</th>
-            <th class="table__column--g">Email</th>
+            <th class="table__column--g">Precio</th>
             <th class="table__column--m table__align--right">
               <a
-                href="./registrar_cliente.html"
+                href="./registrar_producto.html"
                 class="simple-button simple-button--add"
-                >Nuevo Cliente</a
+                >Nuevo producto</a
               >
             </th>
           </tr>
@@ -69,9 +69,6 @@
       </div>
     </main>
     
-    <script src="../controllers/client_controller.js" type="module"></script>
-
+    <script src="../controllers/product_controller.js" type="module"></script>
   </body>
 </html>
-
-<!-- AJAX Asyncronous JavaScript and XML-->

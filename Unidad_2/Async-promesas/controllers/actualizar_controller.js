@@ -31,7 +31,6 @@ const obInfo = async () => {
 
 // Ejecutar al cargar la página
 obInfo();
-
 formulario.addEventListener("submit", async (evento) => {
     evento.preventDefault();
 
@@ -42,7 +41,7 @@ formulario.addEventListener("submit", async (evento) => {
     const email = document.querySelector("[data-email]").value;
 
     try {
-        await clientService.actualizarCliente(nombre, email, id);
+        await clientService.editarCliente(nombre, email, id);
         window.location.href = "../screens/edicion_concluida.html";
     } catch (error) {
         console.error("Error al actualizar:", error);

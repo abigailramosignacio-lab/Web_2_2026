@@ -1,9 +1,55 @@
 {
   "perfil": [
     {
-      "nombre": "FULANITO",
-      "email": "fulanito@univalle.com",
-      "id": 1
+      "nombre": "Abigail Ramos",
+      "email": "abigail.ramos@univalle.edu",
+      "id": "xmZyBT5RlHc"
+    },
+    {
+      "nombre": "Carlos Mendoza",
+      "email": "carlos.m@gmail.com",
+      "id": "nYnbopI73sY"
+    },
+    {
+      "nombre": "Elena Flores",
+      "email": "elena.f@outlook.com",
+      "id": "OYruvI2rgi8"
     }
-  ]
+  ],
+  "producto": [
+    {
+      "nombre": "Croquetas Premium Adulto (10kg)",
+      "precio": "250.50",
+      "id": "CX_AoKqQbA8"
+    },
+    {
+      "nombre": "Shampoo Antipulgas Orgánico",
+      "precio": "45.00",
+      "id": "fVAfdbbf69A"
+    },
+    {
+      "nombre": "Collar de Cuero Ajustable",
+      "precio": "35.00",
+      "id": "zX9PoL12mQ1"
+    }
+  ],
+  "mascota": [
+    {
+      "nombre": "Max",
+      "edad": "3",
+      "raza": "Golden Retriever",
+      "peso": "28kg",
+      "dueñoId": "xmZyBT5RlHc",
+      "id": "dtps7w6RNNo"
+    },
+    {
+      "nombre": "Luna",
+      "edad": "2",
+      "raza": "Siamés",
+      "peso": "4kg",
+      "dueñoId": "nYnbopI73sY",
+      "id": "kLp9q23mNNx"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

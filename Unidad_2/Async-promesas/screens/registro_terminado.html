@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Doguito Petshop | Actualizar cliente</title>
+    <title>Doguito Petshop | Registro concluido</title>
     <link rel="icon" href="../assets/img/doguitoadm.svg" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
@@ -15,8 +15,8 @@
     />
     <link rel="stylesheet" href="../assets/css/base/base.css" />
     <link rel="stylesheet" href="../assets/css/componentes/header.css" />
+    <link rel="stylesheet" href="../assets/css/register_complete.css" />
     <link rel="stylesheet" href="../assets/css/componentes/card.css" />
-    <link rel="stylesheet" href="../assets/css/register_client.css" />
     <link rel="stylesheet" href="../assets/css/componentes/inputs.css" />
     <link rel="stylesheet" href="../assets/css/componentes/button.css" />
   </head>
@@ -24,7 +24,7 @@
     <header class="header container">
       <img
         src="../assets/img/doguitoadm.svg"
-        alt="Logo Doguito"
+        alt="Logotipo Doguito"
         class="header__logo"
       />
       <nav>
@@ -36,40 +36,12 @@
         </ul>
       </nav>
     </header>
-    <main class="container flex flex--center flex--column">
-      <section class="card cadastro">
-        <h1 class="card__title">Editar</h1>
-        <form action="#" class="flex flex--column" data-form>
-          <div class="input-container">
-            <input
-              name="nombre"
-              id="nombre"
-              class="input"
-              type="text"
-              placeholder="nombre"
-              required
-              data-nombre
-            />
-            <label class="input-label" for="nombre">Nombre</label>
-            <span class="input-menssage-error">Este campo es requerido</span>
-          </div>
-          <div class="input-container">
-            <input
-              name="email"
-              id="email"
-              class="input"
-              type="text"
-              placeholder="email"
-              required
-              data-email
-            />
-            <label class="input-label" for="email">Email</label>
-            <span class="input-menssage-error">Este campo es requerido</span>
-          </div>
-          <button type="submit" class="button">Editar cliente</button>
-        </form>
+    <main class="container flex flex--column flex--center">
+      <section class="register-card card">
+        <span class="register-card__icon-complete"></span>
+        <h1 class="register-card__title card__title">¡Registro completado!</h1>
+        <a href="./listar_producto.html" class="button">Ver producto</a>
       </section>
     </main>
-    <script src="../controllers/actualizar_controller.js" type="module"></script>
   </body>
 </html>

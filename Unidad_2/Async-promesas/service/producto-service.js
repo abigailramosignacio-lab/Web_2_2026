@@ -1,146 +1,189 @@
-/*-----CON JSON-SERVER
-const listarProductos = () => 
+/*
+const listarProductos = () =>
     fetch("http://localhost:3000/producto")
-    .then((respuesta) => respuesta.json());
+        .then(respuesta => respuesta.json());
 
 const crearProducto = (nombre, precio) => {
+    const id = crypto.randomUUID();
     return fetch("http://localhost:3000/producto", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ nombre, precio })
-    })
-    .then((respuesta) => {
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, nombre, precio })
+    }).then(respuesta => {
         if (!respuesta.ok) throw new Error("Error al crear");
         return respuesta.json();
     });
 };
 
-const eliminarProducto = (id) => {
-    return fetch(`http://localhost:3000/producto/${id}`, {
-        method: "DELETE"
-    });
-};
+const eliminarProducto = (id) =>
+    fetch(`http://localhost:3000/producto/${id}`, { method: "DELETE" });
 
-const producto = (id) => {
-    return fetch(`http://localhost:3000/producto/${id}`)
-    .then((respuesta) => respuesta.json());
-};
+const productoDetalle = (id) =>
+    fetch(`http://localhost:3000/producto/${id}`)
+        .then(respuesta => respuesta.json());
 
-const editarProducto = (id, nombre, precio) => {
-    return fetch(`http://localhost:3000/producto/${id}`, {
+const editarProducto = (id, nombre, precio) =>
+    fetch(`http://localhost:3000/producto/${id}`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre, precio })
-    })
-    .then((respuesta) => respuesta)
-    .catch((err) => console.log(err));
+    }).then(respuesta => respuesta.json());
+
+export const productoService = {
+    listarProductos, crearProducto, eliminarProducto, productoDetalle, editarProducto
 };
 */
 
 
-/*-----CON SUPABASE
-const URL_SUPABASE = 'https://xytdkyfzjndfgxphtbbe.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_0hnAMtyevUJgAo8LKuRv8A_F64yQKak';
-const table = 'productos';
-const API_URL = `${URL_SUPABASE}/rest/v1/${table}`;
+// ============================================================
+// OPCIÓN 2 · SUPABASE  (sin backend, directo desde el browser)
+// Requiere: <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+// ============================================================
+/*
+const SUPABASE_URL = "https://TU_PROYECTO.supabase.co";
+const SUPABASE_KEY = "TU_ANON_PUBLIC_KEY";
 
-const HEADERS = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': `Bearer ${SUPABASE_KEY}`,
-    'Content-Type': 'application/json',
-    'Prefer': 'return=representation'
-};
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const request = async (url, option = {}) => {
-    try {
-        const res = await fetch(url, {
-            ...option,
-            headers: { ...HEADERS, ...option.headers }
-        });
-        if (res.status === 204) return null;
-        const text = await res.text();
-        const data = text ? JSON.parse(text) : null;
-        if (!res.ok) {
-            const mensaje = data?.message ?? data?.hint ?? text ?? 'Error desconocido';
-            throw new Error(mensaje);
-        }
-        return data;
-    } catch (error) {
-        console.error("Error de conexión/red:", error.message);
-        throw error;
-    }
-};
-
-const listarProductos = () => request(`${API_URL}?select=id,nombre,precio&order=id.asc`);
-const productoDetalle = (id) => request(`${API_URL}?id=eq.${id}&select=id,nombre,precio`)
-    .then(data => {
-        if (!data || data.length === 0) throw new Error('Producto no encontrado');
-        return data[0];
-    });
-const crearProducto = (nombre, precio) => request(API_URL, {
-    method: 'POST',
-    body: JSON.stringify({ nombre, precio })
-}).then(data => data?.[0]);
-const editarProducto = (id, nombre, precio) => request(`${API_URL}?id=eq.${id}`, {
-    method: 'PATCH',
-    body: JSON.stringify({ nombre, precio })
-}).then(data => {
-    if (!data || data.length === 0) throw new Error('No se pudo editar');
-    return data[0];
-});
-const eliminarProducto = (id) => request(`${API_URL}?id=eq.${id}`, {
-    method: 'DELETE'
-}).then(data => {
-    if (!data || data.length === 0) throw new Error('No se pudo eliminar');
+const listarProductos = async () => {
+    const { data, error } = await supabase
+        .from('productos').select('*').order('nombre');
+    if (error) throw error;
     return data;
-});
+};
+
+const crearProducto = async (nombre, precio) => {
+    const id = crypto.randomUUID();
+    const { data, error } = await supabase
+        .from('productos').insert([{ id, nombre, precio }]).select();
+    if (error) throw error;
+    return data[0];
+};
+
+const eliminarProducto = async (id) => {
+    const { error } = await supabase.from('productos').delete().eq('id', id);
+    if (error) throw error;
+    return true;
+};
+
+const productoDetalle = async (id) => {
+    const { data, error } = await supabase
+        .from('productos').select('*').eq('id', id).single();
+    if (error) throw error;
+    return data;
+};
+
+const editarProducto = async (id, nombre, precio) => {
+    const { data, error } = await supabase
+        .from('productos').update({ nombre, precio }).eq('id', id).select();
+    if (error) throw error;
+    return data[0];
+};
+
+export const productoService = {
+    listarProductos, crearProducto, eliminarProducto, productoDetalle, editarProducto
+};
 */
 
 
-// -----CON MYSQL Y PHP (ACTIVA)
-const API_BASE_URL = 'http://127.0.0.1/API/conPro.php';
+// ============================================================
+// OPCIÓN 3 · MYSQL + PHP  (XAMPP / WAMP, api/conexion_productos.php)
+// Requiere: XAMPP corriendo, archivo api/conexion_productos.php en htdocs
+// ============================================================
+/*
+const API_BASE_URL = "http://127.0.0.1/doguito_petshop/api/conexion_productos.php";
 
-const listarProductos = () => {
-    return fetch(API_BASE_URL).then(response => {
-        if (!response.ok) throw new Error('Error al listar productos');
-        return response.json();
-    });
-};
+const listarProductos = () =>
+    fetch(API_BASE_URL)
+        .then(response => {
+            if (!response.ok) throw new Error("Error al listar productos");
+            return response.json();
+        });
 
 const crearProducto = (nombre, precio) => {
+    const id = crypto.randomUUID();
     return fetch(API_BASE_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre, precio })
+        body: JSON.stringify({ id, nombre, precio })
     }).then(response => {
-        if (!response.ok) throw new Error('Error al crear producto');
+        if (!response.ok) throw new Error("Error al crear producto");
         return response.json();
     });
 };
 
-const eliminarProducto = (id) => {
-    return fetch(`${API_BASE_URL}?id=${id}`, { method: "DELETE" });
+const eliminarProducto = (id) =>
+    fetch(`${API_BASE_URL}?id=${id}`, { method: "DELETE" });
+
+const productoDetalle = (id) =>
+    fetch(`${API_BASE_URL}?id=${id}`)
+        .then(respuesta => respuesta.json());
+
+const editarProducto = (id, nombre, precio) =>
+    fetch(API_BASE_URL, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, nombre, precio })
+    }).then(response => {
+        if (!response.ok) throw new Error("Error al editar producto");
+        return response.json();
+    });
+
+export const productoService = {
+    listarProductos, crearProducto, eliminarProducto, productoDetalle, editarProducto
+};
+*/
+
+
+// ============================================================
+// OPCIÓN 4 · SQL via Node.js + Express  (backend-doguito)
+// Requiere: cd backend-doguito && node server.js  (puerto 3001)
+// ============================================================
+
+const API_BASE_URL = "http://localhost:3001";
+
+const listarProductos = () =>
+    fetch(`${API_BASE_URL}/productos`)
+        .then(response => {
+            if (!response.ok) throw new Error("Error al listar productos");
+            return response.json();
+        });
+
+const crearProducto = (nombre, precio) => {
+    const id = crypto.randomUUID();
+    return fetch(`${API_BASE_URL}/productos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, nombre, precio })
+    }).then(response => {
+        if (!response.ok) throw new Error("Error al crear producto");
+        return response.json();
+    });
 };
 
-const editarProducto = (id, nombre, precio) => {
-    return fetch(`${API_BASE_URL}?id=${id}`, {
+const eliminarProducto = (id) =>
+    fetch(`${API_BASE_URL}/productos/${id}`, { method: "DELETE" })
+        .then(response => {
+            if (!response.ok) throw new Error("Error al eliminar producto");
+            return response.json();
+        });
+
+const productoDetalle = (id) =>
+    fetch(`${API_BASE_URL}/productos/${id}`)
+        .then(response => {
+            if (!response.ok) throw new Error("Producto no encontrado");
+            return response.json();
+        });
+
+const editarProducto = (id, nombre, precio) =>
+    fetch(`${API_BASE_URL}/productos/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre, precio })
     }).then(response => {
-        if (!response.ok) throw new Error('Error al editar producto');
+        if (!response.ok) throw new Error("Error al editar producto");
         return response.json();
     });
-};
-
-const productoDetalle = (id) => {
-    return fetch(`${API_BASE_URL}?id=${id}`)
-        .then(respuesta => respuesta.json());
-};
 
 export const productoService = {
     listarProductos,
@@ -149,4 +192,3 @@ export const productoService = {
     productoDetalle,
     editarProducto
 };
-

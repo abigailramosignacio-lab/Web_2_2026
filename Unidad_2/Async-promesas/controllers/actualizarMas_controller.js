@@ -1,4 +1,4 @@
-import { mascotaService } from "../service/mascota-service.js";
+import { clientService } from "../service/client_service.js";
 
 const formu = document.querySelector("[data-form]");
 const url = new URL(window.location);
@@ -32,8 +32,6 @@ const InfoMas = async () => {
     }
 };
 
-InfoMas();
-
 formu.addEventListener("submit", async (evento) => {
     evento.preventDefault();
 
@@ -51,3 +49,5 @@ formu.addEventListener("submit", async (evento) => {
         alert("Ocurrió un error al editar la mascota.");
     }
 });
+
+InfoMas();

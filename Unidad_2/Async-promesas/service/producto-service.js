@@ -35,10 +35,6 @@ export const productoService = {
 */
 
 
-// ============================================================
-// OPCIÓN 2 · SUPABASE  (sin backend, directo desde el browser)
-// Requiere: <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-// ============================================================
 /*
 const SUPABASE_URL = "https://TU_PROYECTO.supabase.co";
 const SUPABASE_KEY = "TU_ANON_PUBLIC_KEY";
@@ -86,10 +82,6 @@ export const productoService = {
 */
 
 
-// ============================================================
-// OPCIÓN 3 · MYSQL + PHP  (XAMPP / WAMP, api/conexion_productos.php)
-// Requiere: XAMPP corriendo, archivo api/conexion_productos.php en htdocs
-// ============================================================
 /*
 const API_BASE_URL = "http://127.0.0.1/doguito_petshop/api/conexion_productos.php";
 
@@ -134,61 +126,53 @@ export const productoService = {
 };
 */
 
-
-// ============================================================
-// OPCIÓN 4 · SQL via Node.js + Express  (backend-doguito)
-// Requiere: cd backend-doguito && node server.js  (puerto 3001)
-// ============================================================
-
 const API_BASE_URL = "http://localhost:3001";
 
-const listarProductos = () =>
-    fetch(`${API_BASE_URL}/productos`)
-        .then(response => {
-            if (!response.ok) throw new Error("Error al listar productos");
-            return response.json();
-        });
+const listarProductos = async () => {
+    const response = await fetch(`${API_BASE_URL}/productos`);
+    if (!response.ok) throw new Error("Error al listar productos");
+    return response.json();
+};
 
-const crearProducto = (nombre, precio) => {
+const productoDetalle = async (id) => {
+    const response = await fetch(`${API_BASE_URL}/productos/${id}`);
+    if (!response.ok) throw new Error("Producto no encontrado");
+    return response.json();
+};
+
+const crearProducto = async (nombre, precio) => {
     const id = crypto.randomUUID();
-    return fetch(`${API_BASE_URL}/productos`, {
+    const response = await fetch(`${API_BASE_URL}/productos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, nombre, precio })
-    }).then(response => {
-        if (!response.ok) throw new Error("Error al crear producto");
-        return response.json();
     });
+    if (!response.ok) throw new Error("Error al crear producto");
+    return response.json();
 };
 
-const eliminarProducto = (id) =>
-    fetch(`${API_BASE_URL}/productos/${id}`, { method: "DELETE" })
-        .then(response => {
-            if (!response.ok) throw new Error("Error al eliminar producto");
-            return response.json();
-        });
-
-const productoDetalle = (id) =>
-    fetch(`${API_BASE_URL}/productos/${id}`)
-        .then(response => {
-            if (!response.ok) throw new Error("Producto no encontrado");
-            return response.json();
-        });
-
-const editarProducto = (id, nombre, precio) =>
-    fetch(`${API_BASE_URL}/productos/${id}`, {
+const editarProducto = async (id, nombre, precio) => {
+    const response = await fetch(`${API_BASE_URL}/productos/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre, precio })
-    }).then(response => {
-        if (!response.ok) throw new Error("Error al editar producto");
-        return response.json();
     });
+    if (!response.ok) throw new Error("Error al editar producto");
+    return response.json();
+};
+
+const eliminarProducto = async (id) => {
+    const response = await fetch(`${API_BASE_URL}/productos/${id}`, {
+        method: "DELETE"
+    });
+    if (!response.ok) throw new Error("Error al eliminar producto");
+    return response.json();
+};
 
 export const productoService = {
     listarProductos,
-    crearProducto,
-    eliminarProducto,
     productoDetalle,
-    editarProducto
+    crearProducto,
+    editarProducto,
+    eliminarProducto
 };

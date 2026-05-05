@@ -1,27 +1,13 @@
-// ============================================================
-//  backend-doguito/server.js
-//  Servidor Express con MySQL2 — Doguito Petshop
-//  Rutas: /clientes  /mascotas  /productos
-//
-//  Instalación:  npm install express cors mysql2 dotenv
-//  Correr:       node server.js
-//  Puerto:       ver .env  →  PORT=3001
-// ============================================================
-
 import express from 'express';
 import cors    from 'cors';
 import dotenv  from 'dotenv';
-import pool    from './conexion.js';   // pool de MySQL2
+import pool    from './conexion.js';
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-// ──────────────────────────────────────────────
-//  CLIENTES
-// ──────────────────────────────────────────────
 
 // GET — listar todos
 app.get('/clientes', async (req, res) => {
@@ -84,10 +70,8 @@ app.delete('/clientes/:id', async (req, res) => {
     }
 });
 
-// ──────────────────────────────────────────────
-//  MASCOTAS
-// ──────────────────────────────────────────────
 
+// MASCOTAS
 // GET — listar todas
 app.get('/mascotas', async (req, res) => {
     try {
@@ -114,13 +98,17 @@ app.get('/mascotas/:id', async (req, res) => {
 // POST — crear
 app.post('/mascotas', async (req, res) => {
     try {
-        const { id, nombre, edad, raza, peso, duenoid } = req.body;
+        console.log("BODY RECIBIDO:", req.body);
+        const { id, nombre, edad, raza, peso } = req.body;
+        const duenoid = req.body["dueñoId"];
+        console.log("duenoid:", duenoid);
         await pool.query(
-            'INSERT INTO mascotas (id, nombre, edad, raza, peso, duenoid) VALUES (?, ?, ?, ?, ?, ?)',
+            'INSERT INTO mascotas (id, nombre, edad, raza, peso, `dueñoId`) VALUES (?, ?, ?, ?, ?, ?)',
             [id, nombre, edad, raza, peso, duenoid]
         );
-        res.status(201).json({ id, nombre, edad, raza, peso, duenoid });
+        res.status(201).json({ id, nombre, edad, raza, peso, dueñoId: duenoid });
     } catch (err) {
+        console.log("ERROR MySQL:", err.message);
         res.status(500).json({ error: err.message });
     }
 });
@@ -128,9 +116,10 @@ app.post('/mascotas', async (req, res) => {
 // PUT — actualizar
 app.put('/mascotas/:id', async (req, res) => {
     try {
-        const { nombre, edad, raza, peso, duenoid } = req.body;
+        const { nombre, edad, raza, peso } = req.body;
+        const duenoid = req.body["dueñoId"];
         await pool.query(
-            'UPDATE mascotas SET nombre = ?, edad = ?, raza = ?, peso = ?, duenoid = ? WHERE id = ?',
+            'UPDATE mascotas SET nombre = ?, edad = ?, raza = ?, peso = ?, `dueñoId` = ? WHERE id = ?',
             [nombre, edad, raza, peso, duenoid, req.params.id]
         );
         res.json({ message: 'Mascota actualizada' });
@@ -149,10 +138,8 @@ app.delete('/mascotas/:id', async (req, res) => {
     }
 });
 
-// ──────────────────────────────────────────────
-//  PRODUCTOS
-// ──────────────────────────────────────────────
 
+// PRODUCTOS
 // GET — listar todos
 app.get('/productos', async (req, res) => {
     try {
@@ -214,7 +201,6 @@ app.delete('/productos/:id', async (req, res) => {
     }
 });
 
-// ──────────────────────────────────────────────
 app.listen(process.env.PORT || 3001, () => {
     console.log(`Servidor corriendo en puerto ${process.env.PORT || 3001}`);
 });

@@ -1,9 +1,3 @@
-// ============================================================
-//  backend-doguito/conexion.js
-//  Pool de conexión a MySQL usando mysql2/promise
-//  Las variables vienen del archivo .env
-// ============================================================
-
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 dotenv.config();

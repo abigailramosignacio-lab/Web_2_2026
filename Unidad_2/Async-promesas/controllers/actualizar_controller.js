@@ -1,53 +1,46 @@
-import { mascotaService } from "../service/mascota-service.js";
+import { clientService } from "../service/client-service.js";
 
-const formu = document.querySelector("[data-form]");
-const url = new URL(window.location);
-const id = url.searchParams.get("id");
+const formulario = document.querySelector("[data-form]");
 
-if (!id) {
-    window.location.href = "../screens/error.html";
-}
+const obtenerInformacion = async () => {
+    const url = new URL(window.location);
+    const id = url.searchParams.get("id");
 
-const InfoMas = async () => {
+    if (id === null) {
+        window.location.href = "../screens/error.html";
+        return;
+    }
+
     const nombre = document.querySelector("[data-nombre]");
-    const edad = document.querySelector("[data-edad]");
-    const raza = document.querySelector("[data-raza]");
-    const peso = document.querySelector("[data-peso]");
-    const duenold = document.querySelector("[data-dueño-id]");
+    const email = document.querySelector("[data-email]");
 
     try {
-        const mascota = await mascotaService.mascota(id);
-        if (mascota.nombre !== undefined && mascota.duenold !== undefined) {
-            nombre.value = mascota.nombre;
-            edad.value = mascota.edad;
-            raza.value = mascota.raza;
-            peso.value = mascota.peso;
-            duenold.value = mascota.duenold;
+        const perfil = await clientService.cliente(id);
+        if (perfil.nombre && perfil.email) {
+            nombre.value = perfil.nombre;
+            email.value = perfil.email;
         } else {
-            throw new Error("Datos incompletos");
+            throw new Error();
         }
     } catch (error) {
-        console.error("Error:", error);
         window.location.href = "../screens/error.html";
     }
 };
 
-InfoMas();
+obtenerInformacion();
 
-formu.addEventListener("submit", async (evento) => {
+formulario.addEventListener("submit", async (evento) => {
     evento.preventDefault();
+    const url = new URL(window.location);
+    const id = url.searchParams.get("id");
 
     const nombre = document.querySelector("[data-nombre]").value;
-    const edad = document.querySelector("[data-edad]").value;
-    const raza = document.querySelector("[data-raza]").value;
-    const peso = document.querySelector("[data-peso]").value;
-    const duenold = document.querySelector("[data-dueño-id]").value;
+    const email = document.querySelector("[data-email]").value;
 
     try {
-        await mascotaService.editarMascota(id, nombre, edad, raza, peso, duenold);
+        await clientService.editarCliente(id, nombre, email);
         window.location.href = "../screens/edicion_concluida.html";
-    } catch (error) {
-        console.error("Error al actualizar:", error);
-        alert("Ocurrió un error al editar la mascota.");
+    } catch (err) {
+        console.log(err);
     }
 });

@@ -1,13 +1,3 @@
-// ============================================================
-//  mascota-service.js  —  Servicio de Mascotas
-//  Descomenta el bloque que quieras usar y comenta los demás.
-// ============================================================
-
-
-// ============================================================
-// OPCIÓN 1 · JSON-SERVER  (npm: json-server, archivo db.json)
-// Comando: npx json-server --watch db.json --port 3000
-// ============================================================
 /*
 const listarMascotas = () =>
     fetch("http://localhost:3000/mascota")
@@ -46,10 +36,6 @@ export const mascotaService = {
 */
 
 
-// ============================================================
-// OPCIÓN 2 · SUPABASE  (sin backend, directo desde el browser)
-// Requiere: <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-// ============================================================
 /*
 const SUPABASE_URL = "https://TU_PROYECTO.supabase.co";
 const SUPABASE_KEY = "TU_ANON_PUBLIC_KEY";
@@ -104,10 +90,6 @@ export const mascotaService = {
 */
 
 
-// ============================================================
-// OPCIÓN 3 · MYSQL + PHP  (XAMPP / WAMP, api/conexion_mascotas.php)
-// Requiere: XAMPP corriendo, archivo api/conexion_mascotas.php en htdocs
-// ============================================================
 /*
 const API_BASE_URL    = "http://127.0.0.1/doguito_petshop/api/conexion_mascotas.php";
 const API_CLIENTES_URL = "http://127.0.0.1/doguito_petshop/api/conexion.php";
@@ -156,71 +138,61 @@ export const mascotaService = {
     listarMascotas, crearMascota, eliminarMascota, mascota, editarMascota, obtenerDueno
 };
 */
+// Ajusta estas URLs a la ruta real de tus archivos PHP en XAMPP
+const API_BASE_URL = "http://localhost:3001";
 
-
-// ============================================================
-// OPCIÓN 4 · SQL via Node.js + Express  (backend-doguito)
-// Requiere: cd backend-doguito && node server.js  (puerto 3001)
-// ============================================================
-
-const API_BASE_URL     = "http://localhost:3001";
-const API_CLIENTES_URL = "http://localhost:3001";
-
-const listarMascotas = () =>
-    fetch(`${API_BASE_URL}/mascotas`)
-        .then(response => {
-            if (!response.ok) throw new Error("Error al listar mascotas");
-            return response.json();
-        });
-
-const crearMascota = (nombre, edad, raza, peso, duenoid) => {
-    const id = crypto.randomUUID();
-    return fetch(`${API_BASE_URL}/mascotas`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, nombre, edad, raza, peso, duenoid })
-    }).then(response => {
-        if (!response.ok) throw new Error("Error al crear mascota");
-        return response.json();
-    });
+const listarMascotas = async () => {
+    const response = await fetch(`${API_BASE_URL}/mascotas`);
+    if (!response.ok) throw new Error("Error al listar mascotas");
+    return response.json();
 };
 
-const eliminarMascota = (id) =>
-    fetch(`${API_BASE_URL}/mascotas/${id}`, { method: "DELETE" })
-        .then(response => {
-            if (!response.ok) throw new Error("Error al eliminar mascota");
-            return response.json();
-        });
+const mascota = async (id) => {
+    const response = await fetch(`${API_BASE_URL}/mascotas/${id}`);
+    if (!response.ok) throw new Error("Mascota no encontrada");
+    return response.json();
+};
 
-const mascota = (id) =>
-    fetch(`${API_BASE_URL}/mascotas/${id}`)
-        .then(response => {
-            if (!response.ok) throw new Error("Mascota no encontrada");
-            return response.json();
-        });
+const crearMascota = async (nombre, edad, raza, peso, duenoid) => {
+    const id = crypto.randomUUID();
+    const response = await fetch(`${API_BASE_URL}/mascotas`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, nombre, edad, raza, peso, "dueñoId": duenoid })
+    });
+    if (!response.ok) throw new Error("Error al crear mascota");
+    return response.json();
+};
 
-const editarMascota = (id, nombre, edad, raza, peso, duenoid) =>
-    fetch(`${API_BASE_URL}/mascotas/${id}`, {
+const editarMascota = async (id, nombre, edad, raza, peso, duenoid) => {
+    const response = await fetch(`${API_BASE_URL}/mascotas/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre, edad, raza, peso, duenoid })
-    }).then(response => {
-        if (!response.ok) throw new Error("Error al editar mascota");
-        return response.json();
+        body: JSON.stringify({ nombre, edad, raza, peso, "dueñoId": duenoid })
     });
+    if (!response.ok) throw new Error("Error al editar mascota");
+    return response.json();
+};
 
-const obtenerDueno = (id) =>
-    fetch(`${API_CLIENTES_URL}/clientes/${id}`)
-        .then(response => {
-            if (!response.ok) throw new Error("Dueño no encontrado");
-            return response.json();
-        });
+const eliminarMascota = async (id) => {
+    const response = await fetch(`${API_BASE_URL}/mascotas/${id}`, {
+        method: "DELETE"
+    });
+    if (!response.ok) throw new Error("Error al eliminar mascota");
+    return response.json();
+};
+
+const obtenerDueno = async (id) => {
+    const response = await fetch(`${API_BASE_URL}/clientes/${id}`);
+    if (!response.ok) throw new Error("Dueño no encontrado");
+    return response.json();
+};
 
 export const mascotaService = {
     listarMascotas,
-    crearMascota,
-    eliminarMascota,
     mascota,
+    crearMascota,
     editarMascota,
+    eliminarMascota,
     obtenerDueno
 };

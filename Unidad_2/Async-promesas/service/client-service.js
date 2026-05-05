@@ -1,14 +1,4 @@
-// ============================================================
-//  client-service.js  —  Servicio de Clientes
-//  Descomenta el bloque que quieras usar y comenta los demás.
-// ============================================================
-
-
-// ============================================================
-// OPCIÓN 1 · JSON-SERVER  (npm: json-server, archivo db.json)
-// Comando: npx json-server --watch db.json --port 3000
-// ============================================================
-/*
+/*JSON
 const listarClientes = () =>
     fetch("http://localhost:3000/perfil")
         .then(respuesta => respuesta.json());
@@ -41,12 +31,7 @@ export const clientService = {
 };
 */
 
-
-// ============================================================
-// OPCIÓN 2 · SUPABASE  (sin backend, directo desde el browser)
-// Requiere: <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-// ============================================================
-/*
+/*SUPABASE
 const SUPABASE_URL = "https://TU_PROYECTO.supabase.co";
 const SUPABASE_KEY = "TU_ANON_PUBLIC_KEY";
 
@@ -92,11 +77,6 @@ export const clientService = {
 };
 */
 
-
-// ============================================================
-// OPCIÓN 3 · MYSQL + PHP  (XAMPP / WAMP, api/conexion.php)
-// Requiere: XAMPP corriendo, archivo api/conexion.php en htdocs
-// ============================================================
 /*
 const API_BASE_URL = "http://127.0.0.1/doguito_petshop/api/conexion.php";
 
@@ -138,62 +118,53 @@ export const clientService = {
     listarClientes, crearCliente, eliminarCliente, cliente, editarCliente
 };
 */
-
-
-// ============================================================
-// OPCIÓN 4 · SQL via Node.js + Express  (backend-doguito)
-// Requiere: cd backend-doguito && node server.js  (puerto 3001)
-// ============================================================
-
 const API_BASE_URL = "http://localhost:3001";
 
-const listarClientes = () =>
-    fetch(`${API_BASE_URL}/clientes`)
-        .then(response => {
-            if (!response.ok) throw new Error("Error al listar clientes");
-            return response.json();
-        });
+const listarClientes = async () => {
+    const response = await fetch(`${API_BASE_URL}/clientes`);
+    if (!response.ok) throw new Error("Error al listar clientes");
+    return response.json();
+};
 
-const crearCliente = (nombre, email) => {
+const cliente = async (id) => {
+    const response = await fetch(`${API_BASE_URL}/clientes/${id}`);
+    if (!response.ok) throw new Error("Cliente no encontrado");
+    return response.json();
+};
+
+const crearCliente = async (nombre, email) => {
     const id = crypto.randomUUID();
-    return fetch(`${API_BASE_URL}/clientes`, {
+    const response = await fetch(`${API_BASE_URL}/clientes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, nombre, email })
-    }).then(response => {
-        if (!response.ok) throw new Error("Error al crear cliente");
-        return response.json();
     });
+    if (!response.ok) throw new Error("Error al crear cliente");
+    return response.json();
 };
 
-const eliminarCliente = (id) =>
-    fetch(`${API_BASE_URL}/clientes/${id}`, { method: "DELETE" })
-        .then(response => {
-            if (!response.ok) throw new Error("Error al eliminar cliente");
-            return response.json();
-        });
-
-const cliente = (id) =>
-    fetch(`${API_BASE_URL}/clientes/${id}`)
-        .then(response => {
-            if (!response.ok) throw new Error("Cliente no encontrado");
-            return response.json();
-        });
-
-const editarCliente = (id, nombre, email) =>
-    fetch(`${API_BASE_URL}/clientes/${id}`, {
+const editarCliente = async (id, nombre, email) => {
+    const response = await fetch(`${API_BASE_URL}/clientes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre, email })
-    }).then(response => {
-        if (!response.ok) throw new Error("Error al editar cliente");
-        return response.json();
     });
+    if (!response.ok) throw new Error("Error al editar cliente");
+    return response.json();
+};
+
+const eliminarCliente = async (id) => {
+    const response = await fetch(`${API_BASE_URL}/clientes/${id}`, {
+        method: "DELETE"
+    });
+    if (!response.ok) throw new Error("Error al eliminar cliente");
+    return response.json();
+};
 
 export const clientService = {
     listarClientes,
-    crearCliente,
-    eliminarCliente,
     cliente,
-    editarCliente
+    crearCliente,
+    editarCliente,
+    eliminarCliente
 };

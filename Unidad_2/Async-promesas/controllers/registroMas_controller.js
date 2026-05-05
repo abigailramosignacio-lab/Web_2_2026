@@ -1,8 +1,22 @@
 import { mascotaService } from "../service/mascota-service.js";
+import { clientService } from "../service/client-service.js";
 
-const formu = document.querySelector("[data-form]");
+const formulario = document.querySelector("[data-form]");
+const selectDueno = document.querySelector("[data-dueño-id]");
 
-formu.addEventListener("submit", (evento) => {
+// Cargar clientes en el dropdown
+clientService.listarClientes()
+    .then((clientes) => {
+        clientes.forEach(cliente => {
+            const option = document.createElement("option");
+            option.value = cliente.id;
+            option.textContent = cliente.nombre;
+            selectDueno.appendChild(option);
+        });
+    })
+    .catch(() => alert("Error al cargar clientes"));
+
+formulario.addEventListener("submit", (evento) => {
     evento.preventDefault();
 
     const nombre = document.querySelector("[data-nombre]").value;
@@ -12,12 +26,11 @@ formu.addEventListener("submit", (evento) => {
     const duenoid = document.querySelector("[data-dueño-id]").value;
 
     mascotaService.crearMascota(nombre, edad, raza, peso, duenoid)
-        .then((respuesta) => {
-            console.log("Todo OK", respuesta);
+        .then(() => {
             window.location.href = "../screens/registro_acabado.html";
         })
         .catch((error) => {
-            console.error("Todo mal", error);
-            alert("Ocurrió un error al registrar la mascota.");
+            console.error("Error en el registro:", error);
+            alert("Error al registrar: " + error.message);
         });
 });

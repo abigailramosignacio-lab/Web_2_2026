@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Doguito Petshop | Registro Mascota</title>
     <link rel="icon" href="../assets/img/doguitoadm.svg" type="image/x-icon" />
-    <link rel="icon" href="../assets/img/doguitoadm.svg" type="image/x-icon" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
-      rel="stylesheet"/>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="../assets/css/base/base.css" />
     <link rel="stylesheet" href="../assets/css/componentes/header.css" />
     <link rel="stylesheet" href="../assets/css/componentes/card.css" />
@@ -21,16 +16,12 @@
   </head>
   <body>
     <header class="header container">
-      <img
-        src="../assets/img/doguitoadm.svg"
-        alt="Logo Doguito"
-        class="header__logo"
-      />
+      <img src="../assets/img/doguitoadm.svg" alt="Logo Doguito" class="header__logo" />
       <nav>
         <ul class="header__list-nav">
           <li class="header__link"><a href="#">Dashboard</a></li>
           <li class="header__link"><a href="listar_producto.html">Productos</a></li>
-          <li class="header__link"><a href="lista_cliente.html">Clientes </a></li>
+          <li class="header__link"><a href="lista_cliente.html">Clientes</a></li>
           <li class="header__link"><a href="listar_mascota.html">Pets</a></li>
         </ul>
       </nav>
@@ -39,65 +30,32 @@
       <section class="card cadastro">
         <h1 class="card__title">Registrar una mascota</h1>
         <form class="flex flex--column" data-form>
-                <div class="input-container">
-                    <input 
-                    name="nombre" 
-                    id="nombre" 
-                    class="input" 
-                    type="text" 
-                    placeholder="Nombre de la mascota" 
-                    required data-nombre />
-                    <label class="input-label" for="nombre">Nombre</label>
-                    <span class="input-menssage-error">Error</span>
-                </div>
-                <div class="input-container">
-                    <input 
-                    name="edad" 
-                    id="edad" 
-                    class="input" 
-                    type="number" 
-                    placeholder="Edad" 
-                    required data-edad />
-                    <label class="input-label" for="edad">Edad</label>
-                    <span class="input-menssage-error">Error</span>
-                </div>
-                <div class="input-container">
-                    <input 
-                    name="raza" 
-                    id="raza" 
-                    class="input" 
-                    type="text" 
-                    placeholder="Raza" 
-                    required data-raza />
-                    <label class="input-label" for="raza">Raza</label>
-                    <span class="input-menssage-error">Error</span>
-                </div>
-                <div class="input-container">
-                    <input 
-                    name="peso" 
-                    id="peso" 
-                    class="input" 
-                    type="text" 
-                    placeholder="Peso (kg)" 
-                    required data-peso />
-                    <label class="input-label" for="peso">Peso</label>
-                    <span class="input-menssage-error">Error</span>
-                </div>
-                <div class="input-container">
-                    <input 
-                    name="dueñoId" 
-                    id="dueñoId" 
-                    class="input" 
-                    type="text" 
-                    placeholder="ID del Dueño" 
-                    required data-dueño-id />
-                    <label class="input-label" for="dueñoId">ID del Dueño</label>
-                    <span class="input-menssage-error">Error</span>
-                </div>
-                <button type="submit" class="button">Registrar Mascota</button>
-            </form> 
+          <div class="input-container">
+            <input name="nombre" id="nombre" class="input" type="text" placeholder="Nombre de la mascota" required data-nombre />
+            <label class="input-label" for="nombre">Nombre</label>
+          </div>
+          <div class="input-container">
+            <input name="edad" id="edad" class="input" type="number" placeholder="Edad" required data-edad />
+            <label class="input-label" for="edad">Edad</label>
+          </div>
+          <div class="input-container">
+            <input name="raza" id="raza" class="input" type="text" placeholder="Raza" required data-raza />
+            <label class="input-label" for="raza">Raza</label>
+          </div>
+          <div class="input-container">
+            <input name="peso" id="peso" class="input" type="text" placeholder="Peso (kg)" required data-peso />
+            <label class="input-label" for="peso">Peso</label>
+          </div>
+          <div class="input-container">
+            <select name="dueñoId" id="dueñoId" class="input" required data-dueño-id>
+              <option value="">Selecciona un dueño...</option>
+            </select>
+            <label class="input-label" for="dueñoId">Dueño</label>
+          </div>
+          <button type="submit" class="button">Registrar Mascota</button>
+        </form>
       </section>
     </main>
-<script src="../controllers/registroMas_controller.js" type="module"></script>
+    <script src="../controllers/registroMas_controller.js" type="module"></script>
   </body>
 </html>

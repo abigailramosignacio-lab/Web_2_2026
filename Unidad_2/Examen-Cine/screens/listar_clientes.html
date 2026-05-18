@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cine | Clientes</title>
+    <link rel="stylesheet" href="../assets/css/base/base.css" />
+    <link rel="stylesheet" href="../assets/css/componentes/header.css" />
+    <link rel="stylesheet" href="../assets/css/componentes/table.css" />
+    <link rel="stylesheet" href="../assets/css/componentes/button.css" />
+  </head>
+  <body>
+    <header class="header container">
+      <span class="header__logo">Cine</span>
+      <nav>
+        <ul class="header__list-nav">
+          <li class="header__link"><a href="listar_clientes.html">Clientes</a></li>
+          <li class="header__link"><a href="listar_peliculas.html">Películas</a></li>
+          <li class="header__link"><a href="listar_salas.html">Salas</a></li>
+          <li class="header__link"><a href="listar_horarios.html">Horarios</a></li>
+          <li class="header__link"><a href="listar_boletos.html">Boletos</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <section>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody data-table></tbody>
+        </table>
+        <a href="registrar_cliente.html" class="simple-button simple-button--add">Nuevo cliente</a>
+      </section>
+    </main>
+    <script type="module" src="../controllers/client_controller.js"></script>
+  </body>
+</html>

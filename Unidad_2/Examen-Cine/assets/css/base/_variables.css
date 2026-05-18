@@ -1,0 +1,14 @@
+/* Variables de colores y tipografía */
+:root {
+  --primary-color: #1E3A8A;
+  --secondary-color: #15295e;
+  --background-color: #f5f7ff;
+  --contrast-color: #111827;
+  --contrast-light-color: #ffffff;
+  --info-color: #fb8500;
+  --success-color: #28a745;
+  --danger-color: #D6001C;
+  --shadow: 0 20px 40px rgba(34, 54, 117, 0.1);
+  --font-family: 'Montserrat', sans-serif;
+  --font-size: 1rem;
+}

@@ -1,0 +1,37 @@
+.header {
+  background-color: var(--contrast-light-color);
+  border-radius: 0 0 0.75rem 0.75rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.5rem;
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+}
+
+.header__logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  
+}
+
+.header__list-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.header__link a {
+  color: var(--contrast-color);
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    height: auto;
+    padding: 1rem;
+  }
+}

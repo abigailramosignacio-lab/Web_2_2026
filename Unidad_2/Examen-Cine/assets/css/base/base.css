@@ -1,0 +1,36 @@
+@import url('_reset.css');
+@import url('_variables.css');
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--contrast-color);
+}
+
+.container {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex--center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex--column {
+  flex-direction: column;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 1rem);
+  }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cine | Registrar horario</title>
+  <link rel="stylesheet" href="../assets/css/base/base.css" />
+  <link rel="stylesheet" href="../assets/css/componentes/header.css" />
+  <link rel="stylesheet" href="../assets/css/componentes/card.css" />
+  <link rel="stylesheet" href="../assets/css/componentes/inputs.css" />
+  <link rel="stylesheet" href="../assets/css/componentes/button.css" />
+</head>
+<body>
+  <header class="header container">
+    <span class="header__logo">Cine</span>
+    <nav>
+      <ul class="header__list-nav">
+        <li class="header__link"><a href="listar_clientes.html">Clientes</a></li>
+        <li class="header__link"><a href="listar_peliculas.html">Películas</a></li>
+        <li class="header__link"><a href="listar_salas.html">Salas</a></li>
+        <li class="header__link"><a href="listar_horarios.html">Horarios</a></li>
+        <li class="header__link"><a href="listar_boletos.html">Boletos</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="card">
+      <h1 class="card__title">Registrar horario</h1>
+      <form data-form>
+        <div class="input-container">
+          <select id="peliculaId" class="input" required></select>
+          <label class="input-label" for="peliculaId">Película</label>
+        </div>
+        <div class="input-container">
+          <select id="salaId" class="input" required></select>
+          <label class="input-label" for="salaId">Sala</label>
+        </div>
+        <div class="input-container">
+          <input class="input" id="inicio" name="inicio" type="datetime-local" required />
+          <label class="input-label" for="inicio">Inicio</label>
+        </div>
+        <div class="input-container">
+          <input class="input" id="precio" name="precio" type="number" min="0" step="0.01" required />
+          <label class="input-label" for="precio">Precio</label>
+        </div>
+        <button class="button">Registrar</button>
+      </form>
+    </section>
+  </main>
+  <script type="module" src="../controllers/registre_horario_controller.js"></script>
+</body>
+</html>

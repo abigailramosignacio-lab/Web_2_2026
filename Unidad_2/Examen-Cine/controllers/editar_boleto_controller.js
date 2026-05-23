@@ -8,7 +8,7 @@ const inputAsiento = document.getElementById('asiento');
 const inputPrecio = document.getElementById('precio');
 const inputFechaCompra = document.getElementById('fechaCompra');
 
-const params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(window.location.search); 
 const id = params.get('id');
 
 const cargarOpciones = async () => {

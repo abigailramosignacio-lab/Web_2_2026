@@ -7,7 +7,7 @@ const crearFila = (clienteNombre, horarioInicio, peliculaTitulo, salaNombre, asi
     <td>${horarioInicio}</td>
     <td>${peliculaTitulo}</td>
     <td>${salaNombre}</td>
-    <td>${asiento}</td>
+    <td>${asiento}</td> 
     <td>${Number(precio).toFixed(2)}</td>
     <td>${fechaCompra}</td>
     <td>
